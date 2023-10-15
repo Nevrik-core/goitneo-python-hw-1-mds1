@@ -22,6 +22,13 @@ def change_contact(args, contacts):
     except ValueError:
         return "Incorrect number of arguments. Usage: change <name> <phone>"
 
+def get_phone(args, contacts):
+    try:
+        name, = args
+        return contacts.get(name, "Contact not found.")
+    except ValueError:
+        return "Incorrect number of arguments. Usage: phone <name>"
+
 
 
 def main():
@@ -32,16 +39,18 @@ def main():
         command, *args = parse_input(user_input)
 
         if command in ["close", "exit"]:
-            print("Good bye!")
+            print("Good bye! I'm stepping through the door!")
             break
         elif command == "hello":
-            print("How can I help you?")
+            print("How can I help you? Do you hear me, Major Tom?")
         elif command == "add":
             print(add_contact(args, contacts))
         elif command == "change":
             print(change_contact(args, contacts))
+        elif command == "phone":
+            print(get_phone(args, contacts))
         else:
-            print("Invalid command.")
+            print("Invalid command. Can you hear me, Major Tom?")
 
 if __name__ == "__main__":
     main()
