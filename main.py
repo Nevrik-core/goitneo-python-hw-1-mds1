@@ -29,7 +29,8 @@ def get_phone(args, contacts):
     except ValueError:
         return "Incorrect number of arguments. Usage: phone <name>"
 
-
+def list_all_contacts(_, contacts):
+    return '\n'.join([f"{name}: {phone}" for name, phone in contacts.items()])
 
 def main():
     contacts = {}
@@ -49,6 +50,8 @@ def main():
             print(change_contact(args, contacts))
         elif command == "phone":
             print(get_phone(args, contacts))
+        elif command == "all":
+            print(list_all_contacts(args, contacts))
         else:
             print("Invalid command. Can you hear me, Major Tom?")
 
