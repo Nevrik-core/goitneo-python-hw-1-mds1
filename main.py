@@ -4,9 +4,25 @@ def parse_input(user_input):
     return cmd, *args
 
 def add_contact(args, contacts):
-    name, phone = args
-    contacts[name] = phone
-    return "Contact added."
+    try:
+        name, phone = args
+        contacts[name] = phone
+        return "Contact added."
+    except ValueError:
+        return "Incorrect number of arguments. Usage: add <name> <phone>"
+    
+def change_contact(args, contacts):
+    try:
+        name, phone = args
+        if name in contacts:
+            contacts[name] = phone
+            return f"Phone number for {name} changed."
+        else:
+            return "Contact not found."
+    except ValueError:
+        return "Incorrect number of arguments. Usage: change <name> <phone>"
+
+
 
 def main():
     contacts = {}
@@ -22,6 +38,8 @@ def main():
             print("How can I help you?")
         elif command == "add":
             print(add_contact(args, contacts))
+        elif command == "change":
+            print(change_contact(args, contacts))
         else:
             print("Invalid command.")
 
